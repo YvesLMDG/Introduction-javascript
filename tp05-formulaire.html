@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        const messageAlerte = "Entrée(s) non valides"
+
+        function validate (... args){
+            for(let i=0;i<args.length;i++){
+                if (args[i] == ""){
+                    alert(messageAlerte);
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        function executer(){
+            let nom = document.querySelector("#nom").value;
+            let prenom = document.querySelector("#prenom").value;
+            let dateDeNaissance = document.querySelector("#dateDeNaissance").value;
+            validate(nom, prenom, dateDeNaissance);
+        }
+    </script>
+</head>
+
+<body>
+    <label for="nom">Nom</label>
+    <input type="text" id="nom" name="nom">
+    <label for="prenom">Prenom</label>
+    <input type="text" id="prenom" name="prenom">
+    <label for="prenom">Date de naissance</label>
+    <input type="text" id="dateDeNaissance" name="dateDeNaissance">
+    <input type="button" value="Valider" onclick="executer()">
+</body>
+
+</html>
