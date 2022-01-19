@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        const messageAlerte = "Entrée(s) non valides"
+
+        function areNumbers (a,b){
+            if (isNaN(a) || isNaN(b)){
+                alert(messageAlerte);
+                return false;
+            }
+            return true;
+        }
+
+        function executer(){
+            let valOperation = document.querySelector("#operation").value;
+            let elResultat = document.querySelector("#resultat");
+            let a = document.querySelector("#a").value;
+            let b = document.querySelector("#b").value;
+            let resultat = 0;
+            if(areNumbers(a,b)){
+                a = parseFloat(a);
+                b = parseFloat(b);
+            
+                switch(valOperation){
+                    case("plus"):
+                        resultat = addition(a,b);
+                        break;
+                    case("moins"):
+                        resultat = soustraction(a,b);
+                        break;
+                    case("multiplier"):
+                        resultat = multiplication(a,b);
+                        break;
+                    case("diviser"):
+                        resultat = division(a,b);
+                        break;
+                }
+            }
+            elResultat.innerHTML = resultat;
+        }
+
+        function addition(a,b){
+            return a + b;
+        }
+        
+        function soustraction(a,b){
+            return a - b;
+        }
+        
+        function multiplication(a,b){
+            return a * b;
+        }
+        
+        function division(a,b){
+            return a / b;
+        }
+    </script>
+</head>
+
+<body>
+    <input type="text" id="a">
+    <input type="text" id="b">
+    <select id="operation" name="operation">
+        <option value="plus" on>+</option>
+        <option value="moins">-</option>
+        <option value="multiplier">*</option>
+        <option value="diviser">/</option>
+    </select>
+    <input type="button" value="Executer" onclick="executer()">
+    <section id="resultat">0</section>
+</body>
+
+</html>
