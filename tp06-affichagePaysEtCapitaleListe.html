@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+
+        function comparePays(paysA, paysB) {
+            if (paysA.name.common < paysB.name.common) {
+                return -1;
+            }
+            return 1;
+        }
+
+        function AfficherDonnees(data) {
+            let elPays = document.querySelector("#countries");
+            let result = "<li>";
+            for (let i = 0; i < data.length; i++) {
+                let pays = data[i];
+                result += "<ol><strong>" + pays.name.common + "</strong>, ";
+                result += pays.population + ", ";
+                result += pays.capital + ", ";
+                result += pays.region + "</ol>";
+            }
+            result += "</li>"
+            elPays.innerHTML = result;
+        }
+
+        function init() {
+            fetch("https://restcountries.com/v3.1/all")
+                .then(res => res.text())
+                .then(JSON.parse)
+                .then(data => data.sort(comparePays))
+                .then(AfficherDonnees);
+        }
+    </script>
+    <title>Affichage Données</title>
+</head>
+
+<body onload="init()">
+    <div id="countries"></div>
+</body>
+
+</html>
