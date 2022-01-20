@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function chargement(text) {
+            let elCountries = document.querySelector("#countries");
+            let data = JSON.parse(text);
+            let result = "<table><thead><tr>";
+            result +="<th>Pays</th><th>Population</th><th>Capitale</th><th>Région</th>";
+            result += "</tr></thead><tbody>";
+            for (let i = 0; i < data.length; i++) {
+                let pays = data[i];
+                result += "<tr><td>" + pays.name.common + "</td>";
+                result += "<td>" + pays.population + "</td>";
+                result += "<td>" + pays.capital + "</td>";
+                result += "<td>" + pays.region + "</td></tr>";
+
+            }
+            result += "<tbody><table>"
+            elCountries.innerHTML = result;
+        }
+        function init() {
+            fetch("https://restcountries.com/v3.1/all")
+                .then(res => res.text())
+                .then(chargement);
+        }
+    </script>
+    <title>Affichage Données</title>
+</head>
+
+<body onload="init()">
+    <div id="countries"></div>
+</body>
+
+</html>
